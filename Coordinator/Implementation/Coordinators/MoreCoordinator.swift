@@ -7,15 +7,16 @@
 
 import UIKit
 
-class MoreCoordinator: Coordinator {
-    weak var mainCoordinator: MainCoordinator?
+class MoreCoordinator: TabCoordinator {
+    weak var parent: MainCoordinator?
     let navigationController = UINavigationController()
 
     var rootViewController: UIViewController {
         navigationController
     }
 
-    init() {
+    init(parent: MainCoordinator?) {
+        self.parent = parent
         navigationController.setViewControllers(
             [makeRootViewController()],
             animated: false
@@ -38,6 +39,6 @@ class MoreCoordinator: Coordinator {
     }
 
     func selectHome() {
-        mainCoordinator?.selectHome()
+        parent?.selectHome()
     }
 }

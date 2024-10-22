@@ -8,12 +8,8 @@
 import UIKit
 
 class MainCoordinator: Coordinator {
-    let homeCoordinator = HomeCoordinator()
-    lazy var moreCoordinator = {
-        let coordinator = MoreCoordinator()
-        coordinator.mainCoordinator = self
-        return coordinator
-    }()
+    lazy var homeCoordinator = HomeCoordinator(parent: self)
+    lazy var moreCoordinator = MoreCoordinator(parent: self)
 
     let tabBarController = UITabBarController()
 
@@ -21,20 +17,28 @@ class MainCoordinator: Coordinator {
         tabBarController
     }
 
-    private var tabCoordinators: [Coordinator] {
-        [homeCoordinator, moreCoordinator]
-    }
-
     init() {
         tabBarController.setViewControllers(
-            tabCoordinators.map { $0.rootViewController },
+            Tab.allCases.map { coordinator(for: $0).rootViewController },
             animated: false)
     }
 
+    func coordinator(for tab: Tab) -> TabCoordinator {
+        switch tab {
+        case .home: homeCoordinator
+        case .more: moreCoordinator
+        }
+    }
+
+    func tabIndex(of coordinator: Coordinator) -> Int? {
+        Tab.allCases.firstIndex {
+            self.coordinator(for: $0) === coordinator
+        }
+    }
+
     func selectHome() {
-        let homeIndex = tabCoordinators.firstIndex { $0 === homeCoordinator }
-        guard let homeIndex else { return }
-        tabBarController.selectedIndex = homeIndex
+        guard let index = tabIndex(of: homeCoordinator) else { return }
+        tabBarController.selectedIndex = index
         homeCoordinator.popToRoot()
     }
 }

@@ -7,14 +7,16 @@
 
 import UIKit
 
-class HomeCoordinator: Coordinator {
+class HomeCoordinator: TabCoordinator {
+    weak var parent: MainCoordinator?
     let navigationController = UINavigationController()
 
     var rootViewController: UIViewController {
         navigationController
     }
 
-    init() {
+    init(parent: MainCoordinator?) {
+        self.parent = parent
         navigationController.setViewControllers(
             [makeRootViewController()],
             animated: false

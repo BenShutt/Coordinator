@@ -32,7 +32,7 @@ class MoreViewController: ViewController {
         tabBarItem = .init(
             title: "More",
             image: .init(systemName: "text.justify"),
-            tag: 0
+            tag: Tab.more.rawValue
         )
     }
 }

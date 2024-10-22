@@ -32,7 +32,7 @@ class HomeViewController: ViewController {
         tabBarItem = .init(
             title: "Home",
             image: .init(systemName: "house.fill"),
-            tag: 0
+            tag: Tab.home.rawValue
         )
     }
 }
