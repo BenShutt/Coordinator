@@ -23,7 +23,7 @@ class MoreCoordinator: TabCoordinator {
         )
     }
     
-    func makeRootViewController() -> UIViewController {
+    private func makeRootViewController() -> UIViewController {
         let viewController = MoreViewController()
         viewController.coordinator = self
         return viewController

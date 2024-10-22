@@ -23,7 +23,7 @@ class HomeCoordinator: TabCoordinator {
         )
     }
 
-    func makeRootViewController() -> UIViewController {
+    private func makeRootViewController() -> UIViewController {
         let viewController = HomeViewController()
         viewController.coordinator = self
         return viewController

@@ -7,13 +7,14 @@
 
 import UIKit
 
-protocol Coordinator: AnyObject {}
+protocol Coordinator: AnyObject {
+    var rootViewController: UIViewController { get }
+}
 
 // MARK: - TabCoordinator
 
 protocol TabCoordinator: Coordinator {
     var parent: MainCoordinator? { get }
-    var rootViewController: UIViewController { get }
 }
 
 extension TabCoordinator {
