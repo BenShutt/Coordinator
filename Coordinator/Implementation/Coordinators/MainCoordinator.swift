@@ -14,6 +14,7 @@ class MainCoordinator: Coordinator {
         coordinator.mainCoordinator = self
         return coordinator
     }()
+
     let tabBarController = UITabBarController()
 
     var rootViewController: UIViewController {
